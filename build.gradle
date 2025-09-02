@@ -1,0 +1,69 @@
+plugins {
+    id 'io.micronaut.library' version '4.4.0'
+    id 'maven-publish'
+}
+
+version getProperty('projectVersion')
+group "coop.stlma.tech.protocolsn"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+micronaut {
+    version = getProperty('micronautVersion')
+}
+
+dependencies {
+    //db
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("org.postgresql:postgresql")
+    implementation("io.micronaut.flyway:micronaut-flyway")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
+
+    //reactor
+    implementation("io.micronaut.reactor:micronaut-reactor")
+
+    //security
+    implementation("io.micronaut.security:micronaut-security-oauth2")
+
+    //lombok
+    annotationProcessor("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
+
+    //swagger
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    implementation("io.micronaut.openapi:micronaut-openapi-annotations")
+
+    //async
+    implementation("com.google.guava:guava")
+
+    //test
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
+    testImplementation("org.mockito:mockito-core")
+}
+
+// use JUnit 5 platform
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = project.group
+            artifactId = "common-lib"
+            version = project.version
+
+            from components.java
+        }
+    }
+}
+
