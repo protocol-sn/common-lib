@@ -5,6 +5,7 @@ import io.micronaut.context.annotation.Requires;
 import io.micronaut.security.config.SecurityConfiguration;
 import io.micronaut.security.oauth2.client.OpenIdProviderMetadata;
 import io.micronaut.security.oauth2.configuration.OauthClientConfiguration;
+import io.micronaut.security.oauth2.endpoint.endsession.request.AuthorizationServerResolver;
 import io.micronaut.security.oauth2.endpoint.endsession.request.EndSessionEndpoint;
 import io.micronaut.security.oauth2.endpoint.endsession.request.EndSessionEndpointResolver;
 import io.micronaut.security.oauth2.endpoint.endsession.request.OktaEndSessionEndpoint;
@@ -33,8 +34,9 @@ public class KeycloakEndSessionEndpointResolverReplacement extends EndSessionEnd
      */
     public KeycloakEndSessionEndpointResolverReplacement(BeanContext beanContext,
                                                          SecurityConfiguration securityConfiguration,
-                                                         TokenResolver tokenResolver) {
-        super(beanContext);
+                                                         TokenResolver tokenResolver,
+                                                         AuthorizationServerResolver authorizationServerResolver) {
+        super(beanContext, authorizationServerResolver);
         this.tokenResolver = tokenResolver;
         this.securityConfiguration = securityConfiguration;
     }
