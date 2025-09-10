@@ -32,7 +32,6 @@ class AsyncTranslatorTest {
         ListeningExecutorService lExecService = MoreExecutors.listeningDecorator(execService);
 
         ListenableFuture<String> listenableFuture = lExecService.submit(() ->  {
-            //Thread.sleep(1000);
             return "Hello World";
         });
 

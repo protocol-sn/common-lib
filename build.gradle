@@ -41,6 +41,9 @@ dependencies {
     //async
     implementation("com.google.guava:guava")
 
+    //grpc
+    implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
+
     //test
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("io.micronaut.test:micronaut-test-junit5")
