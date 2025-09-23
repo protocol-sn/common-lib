@@ -29,6 +29,7 @@ dependencies {
 
     //security
     implementation("io.micronaut.security:micronaut-security-oauth2")
+    implementation("io.micronaut.security:micronaut-security-jwt")
 
     //lombok
     annotationProcessor("org.projectlombok:lombok")
